@@ -1,0 +1,15 @@
+﻿<Window x:Class="免监考C语言晋级考试系统.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:aforge ="clr-namespace:AForge.Controls;assembly=AForge.Controls"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Button x:Name="btnCapture" Click="btnCapture_Click" Width="100" Height="100" Margin="86,110,332.4,110.8">拍照</Button>
+        <Button x:Name="btnOpenCamera" Click="btnOpenCamera_Click" Width="100" Height="100" Margin="326,110,92.4,110.8">打开</Button>
+       
+    </Grid>
+ 
+</Window>
