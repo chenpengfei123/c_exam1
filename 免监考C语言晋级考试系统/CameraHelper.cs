@@ -87,26 +87,38 @@ namespace 免监考C语言晋级考试系统
         /// </summary>
         /// <param name="filePath">图像保存路径</param>
         /// <param name="fileName">保存的图像文件名</param>
-        public static void CaptureImage(string filePath, string fileName = null)
+        public static string   CaptureImage(string filePath, string fileName = null)
         {
-            if (sourcePlayer.VideoSource == null) return;
+            if (sourcePlayer.VideoSource == null) return null;
             if (!Directory.Exists(filePath))
             {
                 Directory.CreateDirectory(filePath);
+                return null;
             }
             try
             {
                 //sourcePlayer.Start();
                 Image bitmap = sourcePlayer.GetCurrentVideoFrame();
                 if (fileName == null) fileName = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
-                bitmap.Save(filePath + @"\" + fileName + "-cap.jpg", ImageFormat.Jpeg);
+                string fullPath = Path.Combine(filePath, fileName + "-cap.jpg");
+
+                //MemoryStream ms = new MemoryStream();
+                //bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                //bitmap.Dispose();
+              //return ms.ToArray();
+
+               bitmap.Save(fullPath, ImageFormat.Jpeg);
                 bitmap.Dispose();
                 //sourcePlayer.Stop();
+                return fullPath;
+           
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message.ToString());
+                return null;
             }
+            
         }
         /// <summary>
         /// 关闭摄像头设备
@@ -120,6 +132,12 @@ namespace 免监考C语言晋级考试系统
                 div = null;
                 _cameraDevices = null;
             }
+        }
+        public byte[] imageToByteArray(System.Drawing.Image imageIn)
+        {
+            MemoryStream ms = new MemoryStream();
+            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+            return ms.ToArray();
         }
     }
 }

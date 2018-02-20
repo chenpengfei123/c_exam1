@@ -2,14 +2,19 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:wfi ="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
         xmlns:aforge ="clr-namespace:AForge.Controls;assembly=AForge.Controls"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525" Closing="Window_Closing">
     <Grid>
-        <Button x:Name="btnCapture" Click="btnCapture_Click" Width="100" Height="100" Margin="86,110,332.4,110.8">拍照</Button>
-        <Button x:Name="btnOpenCamera" Click="btnOpenCamera_Click" Width="100" Height="100" Margin="326,110,92.4,110.8">打开</Button>
-       
+        <Button x:Name="btnCapture" Click="btnCapture_Click" Margin="259,253,48.4,24.8" FontSize="22">拍照</Button>
+        <!--<Button Content="上传照片" HorizontalAlignment="Left" Margin="164,232,0,0" VerticalAlignment="Top" Width="211" Height="40" FontSize="22" Click="Button_Click"/>-->
+        <wfi:WindowsFormsHost Grid.Row="0" Margin="0,0,264.4,120.8">
+            <aforge:VideoSourcePlayer x:Name="player" Height="480" Width="640"/>
+        </wfi:WindowsFormsHost>
+        <Image Name="image1" HorizontalAlignment="Left" Height="200" Margin="275,0,0,0" VerticalAlignment="Top" Width="233"/>
+        <Button Content="关闭" HorizontalAlignment="Left" VerticalAlignment="Top" Width="209" FontSize="22" Margin="21,253,0,0" Height="43" Click="Close_Click"/>
     </Grid>
- 
+
 </Window>
